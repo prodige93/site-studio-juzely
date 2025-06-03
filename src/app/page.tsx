@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { Button } from "@/components/ui/button"
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Bulks")
@@ -15,9 +16,9 @@ export default function Home() {
       <header className="flex items-center justify-between w-full max-w-6xl mb-8 px-4">
         <h1 className="text-lg font-semibold">Labwear Studios</h1>
         <div className="flex items-center gap-4">
-          <button className="rounded-full bg-blue-400 text-white px-4 py-2 text-sm hover:bg-blue-500">
+          <Button className="px-4 py-2 text-sm" variant="default">
             Upgrade plan
-          </button>
+          </Button>
           <div className="w-10 h-10 rounded-full bg-gray-300" title="User avatar" />
         </div>
       </header>
@@ -42,9 +43,9 @@ export default function Home() {
             <button className="rounded-full border border-gray-300 px-4 py-2 text-sm hover:bg-gray-50">
               + Start new design
             </button>
-            <button className="rounded-full bg-blue-400 text-white px-4 py-2 text-sm hover:bg-blue-500">
+            <Button className="px-4 py-2 text-sm" variant="default">
               + Add new collection
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -68,9 +69,9 @@ export default function Home() {
           <button className="rounded-full border border-gray-300 px-6 py-2 text-sm text-gray-600 hover:bg-gray-50">
             Start design
           </button>
-          <button className="rounded-full bg-blue-400 text-white px-6 py-2 text-sm hover:bg-blue-500">
+          <Button className="px-6 py-2 text-sm" variant="default">
             Start new collection
-          </button>
+          </Button>
         </div>
       </main>
     </div>
