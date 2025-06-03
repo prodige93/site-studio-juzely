@@ -25,7 +25,9 @@ export default function Home() {
 
       <main className="w-full max-w-6xl px-4">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">My Orders</h2>
+          <h2 className="text-2xl font-bold" style={{ color: "rgb(70, 71, 84)" }}>
+            My Orders
+          </h2>
 
           <div className="flex items-center gap-4">
             <button className="rounded-full bg-white border border-gray-300 px-4 py-2 text-sm flex items-center gap-2 hover:bg-gray-50">
