@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
 import * as z from "zod"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -15,7 +16,8 @@ const forgotPasswordSchema = z.object({
 type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>
 
 export default function ForgotPasswordPage() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const router = useRouter()
+  const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const {
@@ -32,13 +34,13 @@ export default function ForgotPasswordPage() {
       console.log("Reset password for:", data.email)
       
       // For demo purposes, just show success message
-      setIsSubmitted(true)
+      setSuccess(true)
     } catch (error) {
       setError("An error occurred. Please try again.")
     }
   }
 
-  if (isSubmitted) {
+  if (success) {
     return (
       <div className="min-h-screen grid place-items-center bg-gray-100">
         <div className="w-full max-w-[400px] p-8">
@@ -49,13 +51,13 @@ export default function ForgotPasswordPage() {
           <div className="bg-white rounded-3xl p-8 shadow-md text-center">
             <h2 className="text-xl font-semibold mb-4">Check your email</h2>
             <p className="text-gray-600 mb-6">
-              We've sent password reset instructions to your email address.
+              If an account exists for that email, we've sent password reset instructions.
             </p>
             <Link
               href="/login"
-              className="text-blue-600 hover:underline"
+              className="text-blue-600 hover:underline text-sm"
             >
-              Back to login
+              Return to login
             </Link>
           </div>
         </div>
@@ -71,9 +73,9 @@ export default function ForgotPasswordPage() {
         </div>
 
         <div className="bg-white rounded-3xl p-8 shadow-md">
-          <h2 className="text-xl font-semibold mb-2 text-center">Reset password</h2>
-          <p className="text-gray-600 mb-6 text-center">
-            Enter your email address and we'll send you instructions to reset your password.
+          <h2 className="text-xl font-semibold mb-2 text-center">Forgot password?</h2>
+          <p className="text-gray-600 text-sm text-center mb-6">
+            Enter your email and we'll send you instructions to reset your password.
           </p>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -106,7 +108,7 @@ export default function ForgotPasswordPage() {
                 href="/login"
                 className="text-blue-600 hover:underline text-sm"
               >
-                Back to login
+                Return to login
               </Link>
             </div>
           </form>

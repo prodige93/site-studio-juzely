@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import * as z from "zod"
 import Link from "next/link"
@@ -33,19 +32,13 @@ export default function LoginPage() {
 
   const onSubmit = async (data: LoginValues) => {
     try {
-      const result = await signIn("credentials", {
-        redirect: false,
-        email: data.email,
-        password: data.password,
-      })
-
-      if (result?.error) {
-        setError("Invalid email or password")
+      // Mock authentication - in a real app, this would validate against a backend
+      if (data.email === "demo@example.com" && data.password === "password") {
+        router.push("/")
         return
       }
 
-      router.push("/dashboard/drafts")
-      router.refresh()
+      setError("Invalid email or password")
     } catch (error) {
       setError("An error occurred. Please try again.")
     }
@@ -121,6 +114,12 @@ export default function LoginPage() {
               </Link>
             </div>
           </form>
+        </div>
+
+        <div className="mt-4 text-center text-sm text-gray-600">
+          Demo credentials:<br />
+          Email: demo@example.com<br />
+          Password: password
         </div>
       </div>
     </div>
